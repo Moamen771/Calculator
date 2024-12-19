@@ -31,20 +31,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     SizedBox(
-                      child: Text(
-                        output,
-                        style: TextStyle(
-                          color: specialButtonColor,
-                          fontSize: 40,
-                          overflow: TextOverflow.ellipsis,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          output,
+                          style: TextStyle(
+                            color: specialButtonColor,
+                            fontSize: 40,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      child: Text(
-                        result,
-                        style: TextStyle(color: Colors.white, fontSize: 100),
-                        overflow: TextOverflow.ellipsis,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          result,
+                          style: TextStyle(color: Colors.white, fontSize: 100),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ],
@@ -276,15 +282,17 @@ class _HomeScreenState extends State<HomeScreen> {
                       output = output.replaceAll('x', '*');
                       Parser p = Parser();
                       Expression exp = p.parse(output);
-                      String res = exp
-                          .evaluate(
-                            EvaluationType.REAL,
-                            ContextModel(),
-                          )
-                          .toString();
+                      double evalResult =
+                          exp.evaluate(EvaluationType.REAL, ContextModel());
                       setState(() {
-                        output = output.replaceAll('*', 'x');
-                        result = res;
+                        // Check if evalResult is an integer
+                        if (evalResult == evalResult.floor()) {
+                          output = output.replaceAll('*', 'x');
+                          result = evalResult.floor().toString();
+                        } else {
+                          output = output.replaceAll('*', 'x');
+                          result = evalResult.toString();
+                        }
                       });
                     } catch (e) {
                       setState(() {
