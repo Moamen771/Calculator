@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: specialButtonColor,
                 onTap: () {
                   if (output.isEmpty ||
-                      (output[output.length - 1] == '*' ||
+                      (output[output.length - 1] == 'x' ||
                           output[output.length - 1] == '/' ||
                           output[output.length - 1] == '+' ||
                           output[output.length - 1] == '-')) {
@@ -99,10 +99,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: operationColor,
                 onTap: () {
                   if (output.isEmpty ||
-                      (output[output.length - 1] == '*' ||
+                      (output[output.length - 1] == 'x' ||
                           output[output.length - 1] == '/' ||
                           output[output.length - 1] == '+' ||
-                          output[output.length - 1] == '-')) {
+                          output[output.length - 1] == '-' ||
+                          output[output.length - 1] == '%')) {
                   } else {
                     setState(() {
                       output += '/';
@@ -146,10 +147,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: operationColor,
                 onTap: () {
                   if (output.isEmpty ||
-                      (output[output.length - 1] == '*' ||
+                      (output[output.length - 1] == 'x' ||
                           output[output.length - 1] == '/' ||
                           output[output.length - 1] == '+' ||
-                          output[output.length - 1] == '-')) {
+                          output[output.length - 1] == '-' ||
+                          output[output.length - 1] == '%')) {
                   } else {
                     setState(() {
                       output += 'x';
@@ -193,10 +195,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: operationColor,
                 onTap: () {
                   if (output.isEmpty ||
-                      (output[output.length - 1] == '*' ||
+                      (output[output.length - 1] == 'x' ||
                           output[output.length - 1] == '/' ||
                           output[output.length - 1] == '+' ||
-                          output[output.length - 1] == '-')) {
+                          output[output.length - 1] == '-' ||
+                          output[output.length - 1] == '%')) {
                   } else {
                     setState(() {
                       output += '-';
@@ -240,10 +243,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: operationColor,
                 onTap: () {
                   if (output.isEmpty ||
-                      (output[output.length - 1] == '*' ||
+                      (output[output.length - 1] == 'x' ||
                           output[output.length - 1] == '/' ||
                           output[output.length - 1] == '+' ||
-                          output[output.length - 1] == '-')) {
+                          output[output.length - 1] == '-' ||
+                          output[output.length - 1] == '%')) {
                   } else {
                     setState(() {
                       output += '+';
