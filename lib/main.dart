@@ -1,4 +1,4 @@
-import 'package:calculator/screens/home_screen.dart';
+import 'package:calculator/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class Calculator extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Calculator',
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

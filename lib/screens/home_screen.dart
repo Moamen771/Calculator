@@ -13,12 +13,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String output = '';
+  String equation = '';
   String result = '0';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backColor,
+      backgroundColor: backgroundColor,
       body: Column(
         children: [
           Expanded(
@@ -36,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           output,
                           style: TextStyle(
-                            color: specialButtonColor,
-                            fontSize: 40,
+                            color: secondaryColor,
+                            fontSize: 50,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: specialButtonColor,
+                color: secondaryColor,
                 onTap: () {
                   setState(() {
                     output = '';
@@ -71,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "C",
               ),
               CalculatorButton(
-                color: specialButtonColor,
+                color: secondaryColor,
                 onTap: () {
                   setState(() {
                     output = output.substring(0, output.length - 1);
@@ -80,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "Del",
               ),
               CalculatorButton(
-                color: specialButtonColor,
+                color: secondaryColor,
                 onTap: () {
                   if (output.isEmpty ||
                       (output[output.length - 1] == 'x' ||
@@ -96,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "%",
               ),
               CalculatorButton(
-                color: operationColor,
+                color: primary,
                 onTap: () {
                   if (output.isEmpty ||
                       (output[output.length - 1] == 'x' ||
@@ -106,18 +107,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           output[output.length - 1] == '%')) {
                   } else {
                     setState(() {
-                      output += '/';
+                      output += '÷';
                     });
                   }
                 },
-                text: "/",
+                text: "÷",
               ),
             ],
           ),
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '7';
@@ -126,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "7",
               ),
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '8';
@@ -135,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "8",
               ),
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '9';
@@ -144,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "9",
               ),
               CalculatorButton(
-                color: operationColor,
+                color: primary,
                 onTap: () {
                   if (output.isEmpty ||
                       (output[output.length - 1] == 'x' ||
@@ -165,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '4';
@@ -174,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "4",
               ),
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '5';
@@ -183,7 +184,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "5",
               ),
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '6';
@@ -192,7 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "6",
               ),
               CalculatorButton(
-                color: operationColor,
+                color: primary,
                 onTap: () {
                   if (output.isEmpty ||
                       (output[output.length - 1] == 'x' ||
@@ -213,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '1';
@@ -222,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "1",
               ),
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '2';
@@ -231,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "2",
               ),
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '3';
@@ -240,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "3",
               ),
               CalculatorButton(
-                color: operationColor,
+                color: primary,
                 onTap: () {
                   if (output.isEmpty ||
                       (output[output.length - 1] == 'x' ||
@@ -261,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '0';
@@ -270,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 text: "0",
               ),
               CalculatorButton(
-                color: normalColor,
+                color: primaryColor,
                 onTap: () {
                   setState(() {
                     output += '.';
@@ -280,32 +281,23 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Expanded(
                 child: CalculatorButton(
-                  color: operationColor,
+                  color: primary,
                   onTap: () {
-                    try {
-                      output = output.replaceAll('x', '*');
-                      Parser p = Parser();
-                      Expression exp = p.parse(output);
-                      double evalResult =
-                          exp.evaluate(EvaluationType.REAL, ContextModel());
-                      setState(() {
-                        // Check if evalResult is an integer
-                        if (evalResult == evalResult.floor()) {
-                          output = output.replaceAll('*', 'x');
-                          result = evalResult.floor().toString();
-                        } else {
-                          output = output.replaceAll('*', 'x');
-                          result = evalResult.toString();
-                        }
-                      });
-                    } catch (e) {
-                      setState(() {
-                        e.toString() ==
-                                'RangeError (index): Invalid value: Valid value range is empty: -1'
-                            ? output = 'Syntax Error'
-                            : '';
-                      });
-                    }
+                    equation = output;
+                    equation = equation.replaceAll('x', '*');
+                    equation = equation.replaceAll('÷', '/');
+                    Parser p = Parser();
+                    Expression exp = p.parse(equation);
+                    double evalResult =
+                        exp.evaluate(EvaluationType.REAL, ContextModel());
+                    setState(() {
+                      // Check if evalResult is an integer
+                      if (evalResult == evalResult.floor()) {
+                        result = evalResult.floor().toString();
+                      } else {
+                        result = evalResult.toString();
+                      }
+                    });
                   },
                   text: "=",
                 ),
