@@ -1,4 +1,5 @@
 import 'package:calculator/components.dart';
+import 'package:calculator/screens/history_screen.dart';
 import 'package:calculator/widgets/buttons_row.dart';
 import 'package:calculator/widgets/calculator_button.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String output = '';
   String equation = '';
   String result = '0';
+  List<Map<String, String>> history = [];
 
   @override
   Widget build(BuildContext context) {
@@ -22,36 +24,56 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: backgroundColor,
       body: Column(
         children: [
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20.0, top: 20),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HistoryScreen(
+                          history: history,
+                        ),
+                      ));
+                },
+                style: IconButton.styleFrom(
+                    backgroundColor: secondaryColor,
+                    foregroundColor: Colors.white),
+                icon: Icon(
+                  Icons.history,
+                  size: 30,
+                ),
+              ),
+            ),
+          ),
           Expanded(
             child: SizedBox(
               width: double.infinity,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    SizedBox(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          output,
-                          style: TextStyle(
-                            color: secondaryColor,
-                            fontSize: 50,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        output,
+                        style: TextStyle(
+                          color: secondaryColor,
+                          fontSize: 50,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          result,
-                          style: TextStyle(color: Colors.white, fontSize: 100),
-                          overflow: TextOverflow.ellipsis,
-                        ),
+                    FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        result,
+                        style: TextStyle(color: Colors.white, fontSize: 100),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ],
@@ -298,6 +320,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         result = evalResult.toString();
                       }
                     });
+                    history.add({"output": output, "result": result});
                   },
                   text: "=",
                 ),
