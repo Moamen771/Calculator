@@ -1,4 +1,4 @@
-import 'package:calculator/components.dart';
+import 'package:calculator/themes/colors.dart';
 import 'package:calculator/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
         width: double.infinity,
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                colors: [primary, backgroundColor],
+                colors: [primary, Theme.of(context).colorScheme.surface],
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft)),
         child: Center(
@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen>
                   width: 140,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
-                    color: backgroundColor,
+                    color: Theme.of(context).colorScheme.surface,
                   ),
                   child: Column(
                     spacing: 5,
@@ -69,11 +69,14 @@ class _SplashScreenState extends State<SplashScreen>
                         children: [
                           Text(
                             "+",
-                            style: TextStyle(fontSize: 35, color: Colors.white),
+                            style: TextStyle(
+                              fontSize: 35,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           ),
                           Icon(
                             Icons.remove,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                         ],
                       ),
@@ -83,11 +86,17 @@ class _SplashScreenState extends State<SplashScreen>
                         children: [
                           Text(
                             "÷",
-                            style: TextStyle(fontSize: 35, color: Colors.white),
+                            style: TextStyle(
+                              fontSize: 35,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           ),
                           Text(
                             "x",
-                            style: TextStyle(fontSize: 35, color: Colors.white),
+                            style: TextStyle(
+                              fontSize: 35,
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
                           ),
                         ],
                       ),

@@ -1,4 +1,4 @@
-import 'package:calculator/components.dart';
+import 'package:calculator/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -14,14 +14,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: backgroundColor,
-        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        iconTheme: IconThemeData(color: Theme.of(context).colorScheme.tertiary),
         centerTitle: true,
         title: Text(
           "History",
-          style: TextStyle(color: Colors.white, fontSize: 24),
+          style: TextStyle(
+              color: Theme.of(context).colorScheme.tertiary, fontSize: 24),
         ),
         actions: [
           Padding(
@@ -49,14 +50,18 @@ class _HistoryScreenState extends State<HistoryScreen> {
               children: [
                 Text(
                   widget.history[index]["output"]!,
-                  style: TextStyle(fontSize: 36, color: secondaryColor),
+                  style: TextStyle(
+                      fontSize: 36,
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
                 Text(
                   " = ${widget.history[index]["result"]!}",
-                  style: TextStyle(fontSize: 55, color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 55,
+                      color: Theme.of(context).colorScheme.tertiary),
                 ),
                 Divider(
-                  color: secondaryColor,
+                  color: darkSecondaryColor,
                   thickness: 2,
                   height: 32,
                   indent: 10,

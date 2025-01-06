@@ -1,4 +1,4 @@
-import 'package:calculator/components.dart';
+import 'package:calculator/themes/colors.dart';
 import 'package:calculator/screens/history_screen.dart';
 import 'package:calculator/widgets/buttons_row.dart';
 import 'package:calculator/widgets/calculator_button.dart';
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
           Align(
@@ -39,8 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ));
                 },
                 style: IconButton.styleFrom(
-                    backgroundColor: secondaryColor,
-                    foregroundColor: Colors.white),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  foregroundColor: Theme.of(context).colorScheme.tertiary,
+                ),
                 icon: Icon(
                   Icons.history,
                   size: 30,
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         output,
                         style: TextStyle(
-                          color: secondaryColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           fontSize: 50,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -72,7 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       fit: BoxFit.scaleDown,
                       child: Text(
                         result,
-                        style: TextStyle(color: Colors.white, fontSize: 100),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.tertiary,
+                            fontSize: 100),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
@@ -84,26 +87,28 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: secondaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 onTap: () {
                   setState(() {
                     output = '';
                     result = '0';
                   });
                 },
+                isOperation: false,
                 text: "C",
               ),
               CalculatorButton(
-                color: secondaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 onTap: () {
                   setState(() {
                     output = output.substring(0, output.length - 1);
                   });
                 },
+                isOperation: false,
                 text: "Del",
               ),
               CalculatorButton(
-                color: secondaryColor,
+                color: Theme.of(context).colorScheme.secondary,
                 onTap: () {
                   if (output.isEmpty ||
                       (output[output.length - 1] == 'x' ||
@@ -116,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   }
                 },
+                isOperation: false,
                 text: "%",
               ),
               CalculatorButton(
@@ -133,6 +139,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   }
                 },
+                isOperation: true,
                 text: "÷",
               ),
             ],
@@ -140,30 +147,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '7';
                   });
                 },
+                isOperation: false,
                 text: "7",
               ),
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '8';
                   });
                 },
+                isOperation: false,
                 text: "8",
               ),
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '9';
                   });
                 },
+                isOperation: false,
                 text: "9",
               ),
               CalculatorButton(
@@ -181,6 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   }
                 },
+                isOperation: true,
                 text: "x",
               ),
             ],
@@ -188,30 +199,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '4';
                   });
                 },
+                isOperation: false,
                 text: "4",
               ),
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '5';
                   });
                 },
+                isOperation: false,
                 text: "5",
               ),
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '6';
                   });
                 },
+                isOperation: false,
                 text: "6",
               ),
               CalculatorButton(
@@ -229,6 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   }
                 },
+                isOperation: true,
                 text: "-",
               ),
             ],
@@ -236,30 +251,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '1';
                   });
                 },
+                isOperation: false,
                 text: "1",
               ),
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '2';
                   });
                 },
+                isOperation: false,
                 text: "2",
               ),
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '3';
                   });
                 },
+                isOperation: false,
                 text: "3",
               ),
               CalculatorButton(
@@ -277,6 +295,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                   }
                 },
+                isOperation: true,
                 text: "+",
               ),
             ],
@@ -284,21 +303,23 @@ class _HomeScreenState extends State<HomeScreen> {
           ButtonsRow(
             buttons: [
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '0';
                   });
                 },
+                isOperation: false,
                 text: "0",
               ),
               CalculatorButton(
-                color: primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onTap: () {
                   setState(() {
                     output += '.';
                   });
                 },
+                isOperation: false,
                 text: ".",
               ),
               Expanded(
@@ -322,6 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                     history.add({"output": output, "result": result});
                   },
+                  isOperation: true,
                   text: "=",
                 ),
               ),
