@@ -71,12 +71,12 @@ class _SplashScreenState extends State<SplashScreen>
                             "+",
                             style: TextStyle(
                               fontSize: 35,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.tertiary,
                             ),
                           ),
                           Icon(
                             Icons.remove,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
                         ],
                       ),
@@ -88,14 +88,14 @@ class _SplashScreenState extends State<SplashScreen>
                             "÷",
                             style: TextStyle(
                               fontSize: 35,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.tertiary,
                             ),
                           ),
                           Text(
                             "x",
                             style: TextStyle(
                               fontSize: 35,
-                              color: Theme.of(context).colorScheme.secondary,
+                              color: Theme.of(context).colorScheme.tertiary,
                             ),
                           ),
                         ],

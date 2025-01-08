@@ -24,29 +24,32 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: Column(
         children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 20),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HistoryScreen(
-                          history: history,
-                        ),
-                      ));
-                },
-                style: IconButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.primary,
-                  foregroundColor: Theme.of(context).colorScheme.tertiary,
+          Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              spacing: 20,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HistoryScreen(
+                            history: history,
+                          ),
+                        ));
+                  },
+                  style: IconButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Theme.of(context).colorScheme.tertiary,
+                  ),
+                  icon: Icon(
+                    Icons.history,
+                    size: 30,
+                  ),
                 ),
-                icon: Icon(
-                  Icons.history,
-                  size: 30,
-                ),
-              ),
+              ],
             ),
           ),
           Expanded(
